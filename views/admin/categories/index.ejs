@@ -1,0 +1,47 @@
+<%- include('../../partials/header.ejs') %>
+<%- include('../../partials/navbar.ejs') %>
+    <div class="container">
+        <hr>
+        <h1>Categorias</h1>
+        <hr>
+        <a href="/admin/categories/new" class="btn btn-primary">Criar categoria</a>
+        <input type="text" class="input-group-text float-right border border-info" id="filter-input"> <!-- TODO: Criar filtro -->
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Slug</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% category.forEach(categorie =>{ %>
+                    <tr>
+                        <th><%= categorie.id%></th>
+                        <td><%= categorie.title%></td>
+                        <td><%= categorie.slug%></td>
+                        <td>
+                            <div class="btn-group">
+                                <form class="form-settings" method="post" action="/categories/edit">
+                                    <button onclick="setValueEdit(<%= categorie.id %>, `<%= categorie.title %>`)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalEdit"><i class="bi bi-pen"></i></button>
+                                    <%- include('../../partials/changeModal.ejs') %>
+                                </form>
+                                <form class="form-settings ml-1" method="post" action="/categories/delete">
+                                    <button onclick="setValueDelete(<%= categorie.id %>)" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><i class="bi bi-trash"></i></button>
+                                    <%- include('../../partials/deleteModal.ejs') %>
+                                </form>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+
+       
+    </div>
+    
+<%- include('../../partials/footer.ejs') %>

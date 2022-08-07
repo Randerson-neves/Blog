@@ -17,7 +17,7 @@ app.use(express.urlencoded());
 
 connection.authenticate() 
     .then(() => {
-        console.log("Conexão feita com o banco de dados!")
+        console.log("Conexão feita com o banco de dados!") 
     })
     .catch((error) => {
         console.log(error);

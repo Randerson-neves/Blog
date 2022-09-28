@@ -15,7 +15,6 @@ router.get("/admin/categories", (req,res) =>{
             category:category
         })
     })
-    
 })
 
 router.post("/categories/save", (req,res) => {

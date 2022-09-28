@@ -5,8 +5,13 @@ const Article = require('./Article');
 const slugify = require('slugify');
 
 router.get("/admin/articles", (req, res) =>{
-    res.render("admin/articles/index")
-})
+    Article.findAll({raw: true, where:{isActive: 1}, order:
+        [['id', 'ASC']]}).then( articles =>{
+            res.render("admin/articles/index", {
+                articles:articles
+        });
+    })
+}) 
 
 router.get("/admin/articles/new", (req, res) =>{
     Category.findAll({where:{isActive: 1}}).then( categories => {
@@ -16,17 +21,30 @@ router.get("/admin/articles/new", (req, res) =>{
 })
 
 router.post("/articles/save", (req,res) =>{
-    let {title, body, category} = req.body
-    console.log(req.body.category)
+    let {title, resume, body, category} = req.body
     Article.create({
         title: title,
         slug: slugify(title),
+        resume: resume,
         body: body,
-        categoryId: category
+        categoryId: category,
+        isActive: 1
     }).then(() =>{
         res.redirect("/admin/articles")
     }).catch((err) =>{
         console.log(err);
+    })
+})
+
+router.post("/articles/delete", (req,res) => {
+    let id = req.body.id; 
+    Article.update(
+        {isActive: 0},
+        {where:{id:id}}
+    ).then(() =>{ 
+        res.redirect('/admin/articles');
+    }).catch((err) =>{
+        console.log(err)
     })
 })
 

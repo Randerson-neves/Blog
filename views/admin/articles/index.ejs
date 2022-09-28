@@ -5,8 +5,37 @@
         <h1>Artigos</h1>
         <hr>
         <a href="/admin/articles/new" class="btn btn-primary">Criar artigos</a>
-        
         <hr>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Titulo</th>
+                    <th>Resumo</th>
+                    <th>Categoria</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% articles.forEach(article =>{ %>
+                    <tr>
+                        <th><%= article.id%></th>
+                        <td><%= article.title%></td>
+                        <td><%= article.resume%></td>
+                        <td><%= article.categoryId%></td>
+                        <td>
+                            <div class="btn-group">
+                                <form class="form-settings" method="post" action="/articles/delete">
+                                    <button onclick="setValueDelete(<%= article.id%>)" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"><i class="bi bi-trash"></i></button>
+                                    <%- include('../../partials/deleteModal.ejs') %>
+                                </form>
+                            </div>
+                            
+                        </td>
+                    </tr>
+                <% }) %>
+                
+            </tbody>
+        </table>
        
     </div>
     

@@ -12,8 +12,8 @@ const Categorie = connection.define('categories', {
         allowNull: false
     },
     isActive:{
-        type:sequelize.INTEGER,
-        allowNull:false
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 })
 

@@ -26,7 +26,12 @@ connection.authenticate()
 app.use("/", categoriesController, articleController);
 
 app.get("/", (req,res) =>{
-    res.render("index");
-}) 
+        Article.findAll({where:{isActive: 1}})
+        .then(articles => {
+            res.render("index", {
+                articles:articles
+        }); 
+    })
+}); 
 
 app.listen(8000, console.log("App rodando!"))

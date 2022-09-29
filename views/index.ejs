@@ -1,3 +1,28 @@
 <%- include('partials/header.ejs') %>
 <%- include('partials/navbar.ejs') %>
+<body>
+    <div class="container">
+
+        <div class="jumbotron">
+            <h1 class="display-4">Welcome</h1>
+            <p class="lead">This is a simple blog to Node studies</p>
+            <hr class="my-4">
+            <p>Promoted By Randerson Neves</p>
+            <p class="lead">
+              <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+            </p>
+          </div>
+
+        <% articles.forEach(article =>{ %>
+            <div class="card">
+                <div class="card-header">
+                    <h3><%= article.title %></h3>
+                </div>
+                    <div class="card-body">
+                            <a href="/user/<%= article.id %>" class="btn btn-success">Ler artigo</a>
+                    </div>
+                </div>
+            <% }) %>
+    </div>
+</body>
 <%- include('partials/footer.ejs') %>

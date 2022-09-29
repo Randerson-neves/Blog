@@ -13,6 +13,7 @@
                     <th>Titulo</th>
                     <th>Resumo</th>
                     <th>Categoria</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +22,7 @@
                         <th><%= article.id%></th>
                         <td><%= article.title%></td>
                         <td><%= article.resume%></td>
-                        <td><%= article.categoryId%></td>
+                        <td><%= article.category.title%></td>
                         <td>
                             <div class="btn-group">
                                 <form class="form-settings" method="post" action="/articles/delete">

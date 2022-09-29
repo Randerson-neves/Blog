@@ -1,0 +1,22 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/navbar.ejs') %>
+
+<body>
+    <div class="container">
+
+        <% articles.forEach(article =>{ %>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    <h3><%= article.title %></h3>
+                </div>
+                    <div class="card-body">
+                            <a href="/user/<%= article.id %>" class="btn btn-success">Ler artigo</a>
+                    </div>
+                </div>
+                <br>
+            <% }) %>
+    </div>
+</body>
+
+<%- include('../partials/footer.ejs') %> 

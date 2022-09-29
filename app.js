@@ -28,8 +28,13 @@ app.use("/", categoriesController, articleController);
 app.get("/", (req,res) =>{
         Article.findAll({where:{isActive: 1}})
         .then(articles => {
-            res.render("index", {
-                articles:articles
+            Category.findAll({
+                where:{isActive:1}
+            }).then(categories => {
+                res.render("index", {
+                articles:articles,
+                categories: categories
+            }); 
         }); 
     })
 }); 

@@ -37,6 +37,19 @@ router.get("/user/:id", (req,res) =>{
     })
 })
 
+router.get("/user/articles/:id", (req,res) =>{
+    var selectedCategory = req.params.id
+    Article.findAll({
+        where: [{categoryId: selectedCategory},
+        {isActive: 1}]
+    }).then(articles => {
+            res.render("user/articleByCategorie.ejs", {articles:articles}); 
+    }).catch(err =>{
+        console.log(err);
+        res.redirect("/")
+    })
+})
+
 router.post("/articles/save", (req,res) =>{
     let {title, resume, body, category} = req.body
     Article.create({
